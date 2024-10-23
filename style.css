@@ -2,3 +2,6 @@ nav ul a {
     font-family: "Verdana, Verdana, Geneva, sans-serif";
 }
 
+#todayDate {
+    text-align: center;
+}
