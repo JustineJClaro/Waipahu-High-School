@@ -23,7 +23,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">#</a>
+                  <a class="nav-link active" aria-current="page" href="#">Search Here Bruh</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">#</a>
@@ -34,7 +34,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">#</a>
                 </li>
-                
+
               </ul>
             </div>
           </div>
@@ -47,7 +47,45 @@
     <h1>Teacher and Staff Contacts</h1>
   </header>
   <main class="container cover text-center">
+  <script>
+    import React, { useState } from 'react';
+import { Search } from 'lucide-react';
 
+const SearchBar = () => {
+  const [query, setQuery] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log('Searching for:', query);
+    // Handle search logic here
+  };
+
+  return (
+    <form onSubmit={handleSearch} className="w-full max-w-xl">
+      <div className="relative flex items-center">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search..."
+          className="w-full px-4 py-2 pl-10 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+        <Search 
+          className="absolute left-3 w-4 h-4 text-gray-400" 
+        />
+        <button
+          type="submit"
+          className="absolute right-2 px-4 py-1 text-sm text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default SearchBar;
+</script>
   </main>
 
   <footer class="container">
