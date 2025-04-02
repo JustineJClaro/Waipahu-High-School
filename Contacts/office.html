@@ -1,105 +1,199 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Contacts</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.8rem;
+        }
+        
+        .search-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 10px 10px 10px 35px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        #contactList {
+            list-style: none;
+            margin-bottom: 20px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        
+        .contact-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-name {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
 
-  <!-- Custom JS -->
-  <script src="../index.js"></script>
+        /* Mobile responsive adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                border-radius: 6px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            #searchInput {
+                font-size: 14px;
+                padding: 8px 8px 8px 32px;
+            }
+            
+            .contact-name {
+                font-size: 16px;
+            }
+            
+            .contact-info {
+                font-size: 13px;
+            }
+            
+            .contact-item {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
+<body>
+    <div class="container">
+        <h1>Contact List</h1>
+        
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search contacts...">
+        </div>
+        
+        <ul id="contactList"></ul>
+    </div>
 
-<body style>
-  <br>
-  <br>
-  <br>
-  <header class="container text-center">
-    <h1>Teacher and Staff Contacts</h1>
-  </header>
-  <main class="container cover text-center">
     <script>
-      import React, { useState } from 'react';
-      import { Search } from 'lucide-react';
-      import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-
-      const SearchableList = () => {
-        // Sample data - replace with your own list
-        const items = [
-          "Apple", "Banana", "Cherry", "Date", "Elderberry",
-          "Fig", "Grape", "Honeydew", "Ice Cream Bean", "Jackfruit",
-          "Kiwi", "Lemon", "Mango", "Nectarine", "Orange",
-          "Papaya", "Quince", "Raspberry", "Strawberry", "Tangerine"
+        // Initial contacts data
+        let contacts = [
+            { id: 1, name: 'John Smith', phone: '(555) 123-4567', email: 'john.smith@example.com' },
+            { id: 2, name: 'Sarah Johnson', phone: '(555) 987-6543', email: 'sarah.j@example.com' },
+            { id: 3, name: 'Michael Lee', phone: '(555) 234-5678', email: 'mike.lee@example.com' },
+            { id: 4, name: 'Emily Davis', phone: '(555) 345-6789', email: 'emily.d@example.com' },
+            { id: 5, name: 'Robert Wilson', phone: '(555) 456-7890', email: 'rwilson@example.com' },
+            { id: 6, name: 'Jennifer Taylor', phone: '(555) 567-8901', email: 'jtaylor@example.com' },
+            { id: 7, name: 'David Brown', phone: '(555) 678-9012', email: 'dbrown@example.com' },
+            { id: 8, name: 'Lisa Anderson', phone: '(555) 789-0123', email: 'lisa.a@example.com' },
+            { id: 9, name: 'Thomas Martin', phone: '(555) 890-1234', email: 'tmartin@example.com' },
+            { id: 10, name: 'Michelle Garcia', phone: '(555) 901-2345', email: 'mgarcia@example.com' }
         ];
 
-        const [searchQuery, setSearchQuery] = useState('');
+        // DOM elements
+        const contactList = document.getElementById('contactList');
+        const searchInput = document.getElementById('searchInput');
 
-        // Filter items based on search query
-        const filteredItems = items.filter(item =>
-          item.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        // Display all contacts
+        function displayContacts(contactsToDisplay) {
+            contactList.innerHTML = '';
+            
+            if (contactsToDisplay.length === 0) {
+                contactList.innerHTML = '<div class="no-results">No contacts found</div>';
+                return;
+            }
+            
+            contactsToDisplay.forEach(contact => {
+                const contactItem = document.createElement('li');
+                contactItem.className = 'contact-item';
+                contactItem.innerHTML = `
+                    <div class="contact-name">${contact.name}</div>
+                    <div class="contact-info">📱 ${contact.phone}</div>
+                    <div class="contact-info">✉️ ${contact.email}</div>
+                `;
+                contactList.appendChild(contactItem);
+            });
+        }
 
-        return (
-          <Card className="w-full max-w-md mx-auto">
-            <CardHeader>
-              <CardTitle>Fruit Search</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {/* Search Input */}
-              <div className="relative mb-4">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search fruits..."
-                  className="w-full px-4 py-2 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-              </div>
+        // Search functionality
+        function searchContacts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredContacts = contacts.filter(contact => 
+                contact.name.toLowerCase().includes(searchTerm)
+            );
+            displayContacts(filteredContacts);
+        }
 
-              {/* Results List */}
-              <div className="mt-2">
-                {filteredItems.length === 0 ? (
-                  <p className="text-center text-gray-500 py-4">No matches found</p>
-                ) : (
-                  <ul className="divide-y">
-                    {filteredItems.map((item, index) => (
-                      <li
-                        key={index}
-                        className="py-2 px-2 hover:bg-gray-50 rounded cursor-pointer"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+        // Event listeners
+        searchInput.addEventListener('input', searchContacts);
 
-              {/* Results Counter */}
-              <div className="mt-4 text-sm text-gray-500 text-right">
-                Showing {filteredItems.length} of {items.length} items
-              </div>
-            </CardContent>
-          </Card>
-        );
-      };
-
-      export default SearchableList;
+        // Initialize
+        displayContacts(contacts);
     </script>
-  </main>
-
-  <main-footer></main-footer>
-
-
-
-
 </body>
-
+</html>
+</body>
 </html>
