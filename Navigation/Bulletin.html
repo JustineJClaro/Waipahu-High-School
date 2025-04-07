@@ -33,101 +33,52 @@
       const d = new Date();
       document.getElementById("todayDate").innerHTML = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       switch (new Date().getDay()) {
-          case 0:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-            break;
-          case 1:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-            break;
-          case 2:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-            break;
-          case 3:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-            break;
-          case 4:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-            break;
-          case 5:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-            break;
-          case 6:
-          scheduleAnnouncement = document.createElement('div');
-          scheduleAnnouncement.setAttribute("id", "AnnouncementBox");
-          heading = document.createElement("H5");
-          heading.innerHTML = document.getElementById("todayDate") + " Schedule";
-          AnnouncementBox.appendChild(heading);
-          description - document.createElement("a");
-          var linkText = document.createTextNode("my title text");
-          description.appendChild(linkText);
-          descripton.title = "my title text";
-          descripton.href = "JustineJClaro/Waipahu-High-School/Student/bellSchedule.html";
-          AnnouncementBox.appendChild(descripton);
-        }
+  case 0:
+  document.getElementById("today").innerHTML = "NO SCHOOL";
+    break;
+  case 1:
+  document.getElementById("today").innerHTML = "MONDAY SCHEDULE";;
+    break;
+  case 2:
+  document.getElementById("today").innerHTML = "TUESDAY SCHEDULE ";;
+    break;
+  case 3:
+  document.getElementById("today").innerHTML = "WEDNESDAY SCHEDULE";;
+    break;
+  case 4:
+  document.getElementById("today").innerHTML = "THURSDAY SCHEDULE";;
+    break;
+  case 5:
+  document.getElementById("today").innerHTML = "FRIDAY SCHEDULE";;
+    break;
+  case 6:
+  document.getElementById("today").innerHTML = "NO SCHOOL";;
+}
     </script>
 
     <br>
     <br>
+    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Link with href
+    </a>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="todayDate">
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <h3 id ="today"></h3>
+            <iframe type="application/pdf"
+              src="https://www.waipahuhigh.org/STUDENTBELLSCHEDULE2023-2024.pdf"
+              width="100%" height="600px"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
 <table> 
 <tr>  
     <th><img src = "https://www.waipahuhigh.org/ourpages/auto/2025/4/1/45166328/class%20of%202026%20junior%20year%20-%20family%20night%20instagram%20post%20color_thumb.jpg?1743528916000" alt="Image preview" height="75" ></th>
