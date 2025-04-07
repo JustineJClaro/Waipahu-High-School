@@ -8,4 +8,5 @@ nav ul a {
 
 html {
     scroll-behavior: smooth;
+    font-family: "Lucida Console", "Courier New", monospace;
 }
