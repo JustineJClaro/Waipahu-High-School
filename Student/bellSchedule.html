@@ -65,6 +65,34 @@
       <br>
       <br>
       <br>
+      
+      <h1>TODAY'S SCHEDULE: <strong id="today"></strong></h1>
+      <script>
+        switch (new Date().getDay()) {
+  case 0:
+  document.getElementById("today").innerHTML = "NO SCHOOL";
+    break;
+  case 1:
+  document.getElementById("today").innerHTML = "MONDAY SCHEDULE";;
+    break;
+  case 2:
+  document.getElementById("today").innerHTML = "TUESDAY SCHEDULE ";;
+    break;
+  case 3:
+  document.getElementById("today").innerHTML = "WEDNESDAY SCHEDULE";;
+    break;
+  case 4:
+  document.getElementById("today").innerHTML = "THURSDAY SCHEDULE";;
+    break;
+  case 5:
+  document.getElementById("today").innerHTML = "FRIDAY SCHEDULE";;
+    break;
+  case 6:
+  document.getElementById("today").innerHTML = "NO SCHOOL";;
+}
+
+
+      </script>
         <iframe type="application/pdf"
       src="https://www.waipahuhigh.org/STUDENTBELLSCHEDULE2023-2024.pdf"
       width="100%" height="600px"></iframe>
