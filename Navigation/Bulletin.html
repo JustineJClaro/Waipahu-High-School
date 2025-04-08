@@ -16,9 +16,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
   <!-- Custom JS -->
   <script src="../index.js"></script>
@@ -40,61 +46,66 @@
       <div class="panel panel-default border">
         <div class="panel-heading" role="tab" id="headingOne">
           <h4 class="panel-title">
-            <a class = "text-dark "role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <a class="text-dark " role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
               Today's Schedule
             </a>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body">
-            <h3 id = "today"></h3>
+            <h3 id="today"></h3>
             <h3><strong id="today"></strong></h3>
-            <iframe type="application/pdf"
-              src="https://www.waipahuhigh.org/STUDENTBELLSCHEDULE2023-2024.pdf"
-              width="100%" height="600px">
-            </iframe>
+            <iframe type="application/pdf" src="https://www.waipahuhigh.org/STUDENTBELLSCHEDULE2023-2024.pdf"
+              width="100%" height="600px"></iframe>
           </div>
         </div>
       </div>
     </div>
-<table> 
-<tr>  
-    <th><img src = "https://www.waipahuhigh.org/ourpages/auto/2025/4/1/45166328/class%20of%202026%20junior%20year%20-%20family%20night%20instagram%20post%20color_thumb.jpg?1743528916000" alt="Image preview" height="75" ></th>
-    <th> <a href = "https://www.waipahuhigh.org/apps/news/show_news.jsp?REC_ID=960390&id=0">Class of 2026 Junior Year - Family Night</a> </th> 
-    <td>Wednesday, April 23, 2025 5:30 PM Check-In & Dinner 6:00 PM Program Begins
-    The College Center will be hosting a C/O 2026 Junior Year Family Night on Wednesday, April 23rd, at 6:00 PM in the school cafeteria. Pacific University Oregon Associate Director, Donna Ramos Barsana, will share valuable tips on applying to colleges. Class Council Members will share updates to prepare for an amazing senior year.
-    Class of 2026 students & parents/guardians are highly encouraged to attend.
-    RSVP: tinyurl.com/26springfamilynight</td>
-</tr>  
-  
+    <div class="container">
+      <img
+        src="https://www.waipahuhigh.org/ourpages/auto/2025/4/1/45166328/class%20of%202026%20junior%20year%20-%20family%20night%20instagram%20post%20color_thumb.jpg?1743528916000"
+        alt="Image preview" height="75">
+      <br>
+      <a href="https://www.waipahuhigh.org/apps/news/show_news.jsp?REC_ID=960390&id=0">Class of 2026 Junior Year -
+        Family Night</a>
+      <p>Wednesday, April 23, 2025 5:30 PM Check-In & Dinner 6:00 PM Program Begins
+        The College Center will be hosting a C/O 2026 Junior Year Family Night on Wednesday, April 23rd, at 6:00 PM
+        in the school cafeteria. Pacific University Oregon Associate Director, Donna Ramos Barsana, will share
+        valuable tips on applying to colleges. Class Council Members will share updates to prepare for an amazing
+        senior year.
+        Class of 2026 students & parents/guardians are highly encouraged to attend.
+        RSVP: <a href="tinyurl.com/26springfamilynight">tinyurl.com/26springfamilynight</a></p>
+    </div>
 
-</table> 
-<script>
-  const d = new Date();
-  document.getElementById("todayDate").innerHTML = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
-  switch (new Date().getDay()) {
-    case 0:
-    document.getElementById("today").innerHTML = "NO SCHOOL";
-    break;
-    case 1:
-    document.getElementById("today").innerHTML = "MONDAY SCHEDULE";
-    break;
-    case 2:
-    document.getElementById("today").innerHTML = "TUESDAY SCHEDULE ";
-    break;
-    case 3:
-    document.getElementById("today").innerHTML = "WEDNESDAY SCHEDULE";
-    break;
-    case 4:
-    document.getElementById("today").innerHTML = "THURSDAY SCHEDULE";
-    break;
-    case 5:
-    document.getElementById("today").innerHTML = "FRIDAY SCHEDULE";
-    break;
-    case 6:
-    document.getElementById("today").innerHTML = "NO SCHOOL";
-}
-</script>
+
+    </table>
+    <script>
+      const d = new Date();
+      document.getElementById("todayDate").innerHTML = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      switch (new Date().getDay()) {
+        case 0:
+          document.getElementById("today").innerHTML = "NO SCHOOL";
+          break;
+        case 1:
+          document.getElementById("today").innerHTML = "MONDAY SCHEDULE";
+          break;
+        case 2:
+          document.getElementById("today").innerHTML = "TUESDAY SCHEDULE ";
+          break;
+        case 3:
+          document.getElementById("today").innerHTML = "WEDNESDAY SCHEDULE";
+          break;
+        case 4:
+          document.getElementById("today").innerHTML = "THURSDAY SCHEDULE";
+          break;
+        case 5:
+          document.getElementById("today").innerHTML = "FRIDAY SCHEDULE";
+          break;
+        case 6:
+          document.getElementById("today").innerHTML = "NO SCHOOL";
+      }
+    </script>
   </main>
 
   <main-footer></main-footer>
