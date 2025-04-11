@@ -36,11 +36,17 @@
     <h1 class="display-1 text-light"><strong>Waipahu High School</strong></h1>
   </header>
   <main>
-    <div class="videoContainer">
-      <video id="glass" width="640" height="360" autoplay>
-          <source src="https://www.waipahuhigh.org/shared/videos/video.mp4" type="video/mp4">
+    <div class="en-widescreen-video muted" poster="/pics/video.jpg" play-button="1">
+      <video playsinline="" autoplay="" loop="" preload="metadata" poster="/pics/video.jpg" en-pauseable="true" en-onplay-pause-others="false">
+        <source src="https://www.waipahuhigh.org/shared/videos/video.mp4">
+        <p>Your browser does not support the video tag</p>
       </video>
+    <div class="en-video-controls">
+      <button title="Toggle video play &amp; pause" aria-label="Toggle video play &amp; pause" aria-pressed="true" class="play-btn play-btn-1">
+
+      </button>
     </div>
+  </div>
   </main>
   <footer class="container">
     <nav class="fixed-bottom bg-dark">
