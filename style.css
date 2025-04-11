@@ -44,13 +44,3 @@ a {
 
 }
 
-.videoContainer {
-    width: 200px;
-    overflow: hidden;
-    display: block;
-    height: 360px;
-}
-
-#glass {
-    margin-left: -220px;
-}
