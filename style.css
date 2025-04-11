@@ -28,3 +28,10 @@ html {
 .cf {
     zoom: 1;
 }
+
+.en-widescreen-video video {
+    min-height: 600px;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
