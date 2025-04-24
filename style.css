@@ -35,3 +35,7 @@ html {
     object-fit: cover;
     width: 100%;
 }
+
+body {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
