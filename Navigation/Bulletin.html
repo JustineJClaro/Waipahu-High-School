@@ -62,56 +62,6 @@
         </div>
       </div>
     </div>
-    <div class="accordion-notification">
-    <script>
-      const accordion = document.getElementById("accordion-notification");
-      const shownNotifications = new Set();
-    
-      async function loadNotifications() {
-        try {
-          const res = await fetch("https://docs.google.com/document/d/e/2PACX-1vSBGOtfDF_UpFHYH1iBlzBGdUODeeMWT97IPv4aFsWw_W4eyjollFtvN0yRe7FXj62h-agAppMkKPA0/pub?embedded=true");
-          const text = await res.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(text, "text/html");
-          const content = doc.body.innerText;
-    
-          const lines = content.split("\n").map(line => line.trim()).filter(Boolean);
-    
-          lines.forEach((line, index) => {
-            if (!shownNotifications.has(line)) {
-              shownNotifications.add(line);
-    
-              const title = line.split(":")[0] || "New Update";
-              const message = line.split(":").slice(1).join(":") || "No details provided.";
-    
-              const newDiv = document.createElement("div");
-              newDiv.innerHTML = `
-                <div class="card mb-2">
-                  <div class="card-header">
-                    <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#notif${index}">
-                      ${title}
-                    </button>
-                  </div>
-                  <div id="notif${index}" class="collapse">
-                    <div class="card-body">
-                      ${message}
-                    </div>
-                  </div>
-                </div>`;
-              accordion.appendChild(newDiv);
-            }
-          });
-        } catch (err) {
-          console.error("Could not load notifications:", err);
-        }
-      }
-    
-      // Initial load + auto refresh every 60 sec
-      loadNotifications();
-      setInterval(loadNotifications, 60000);
-    </script>
-    </div>
-    
     <div class="container">
       <img
         src="https://www.waipahuhigh.org/ourpages/auto/2025/4/1/45166328/class%20of%202026%20junior%20year%20-%20family%20night%20instagram%20post%20color_thumb.jpg?1743528916000"
