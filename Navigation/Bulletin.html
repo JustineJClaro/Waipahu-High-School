@@ -28,6 +28,9 @@
 
     <script>
       async function loadGoogleDoc() {
+        const accordion = document.getElementById('notifications');
+        accordion.innerHTML = '<div class="text-center my-4"><div class="spinner-border" role="status"></div></div>';
+
         try {
           const response = await fetch('https://api.allorigins.win/raw?url=https://docs.google.com/document/d/e/2PACX-1vSBGOtfDF_UpFHYH1iBlzBGdUODeeMWT97IPv4aFsWw_W4eyjollFtvN0yRe7FXj62h-agAppMkKPA0/pub');
           const html = await response.text();
@@ -36,15 +39,19 @@
           const doc = parser.parseFromString(html, 'text/html');
           const paragraphs = doc.querySelectorAll('p');
 
-          const accordion = document.getElementById('notifications');
-          accordion.innerHTML = '';
-
+          const maxParagraphsToCheck = 50;
           const maxNotifications = 5;
           let index = 0;
 
-          for (let p of paragraphs) {
-            const text = p.innerText.trim();
-            if (text.length < 5 || text.length > 1000) continue;
+          accordion.innerHTML = '';
+
+          for (let i = 0; i < Math.min(paragraphs.length, maxParagraphsToCheck); i++) {
+            const text = paragraphs[i].innerText.trim();
+
+            if (text.length < 5 || text.length > 2000) continue;
+            if (!/^(\d{1,2}\/\d{1,2}|📢|•|ANNOUNCEMENT)/i.test(text)) continue;
+
+            const shortText = text.length > 500 ? text.slice(0, 500) + '…' : text;
 
             const item = document.createElement('div');
             item.className = 'accordion-item';
@@ -56,17 +63,22 @@
                 </button>
               </h2>
               <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
-                <div class="accordion-body">${text.replace(/\n/g, '<br>')}</div>
+                <div class="accordion-body">${shortText.replace(/\n/g, '<br>')}</div>
               </div>
             `;
             accordion.appendChild(item);
-            index++;
 
+            index++;
             if (index >= maxNotifications) break;
           }
 
+          if (index === 0) {
+            accordion.innerHTML = '<div class="alert alert-warning">No valid announcements found.</div>';
+          }
+
         } catch (error) {
-          console.error('Failed to load Google Doc content:', error);
+          accordion.innerHTML = '<div class="alert alert-danger">Failed to load announcements.</div>';
+          console.error('Load error:', error);
         }
       }
 
