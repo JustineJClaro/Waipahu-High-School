@@ -67,7 +67,7 @@
     
       async function fetchGoogleDocUpdates() {
         try {
-          const res = await fetch("https://docs.google.com/document/d/e/2PACX-1vTq2Fle748vgloEadw30HlA5Q3ZdVisTcZzxsfaghnof5pDg7Q79-j0-3410brICZi-7BMsvq20xXRT/pub?embedded=true");
+          const res = await fetch("https://docs.google.com/document/d/e/2PACX-1vSBGOtfDF_UpFHYH1iBlzBGdUODeeMWT97IPv4aFsWw_W4eyjollFtvN0yRe7FXj62h-agAppMkKPA0/pub?embedded=true");
           const text = await res.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(text, 'text/html');
