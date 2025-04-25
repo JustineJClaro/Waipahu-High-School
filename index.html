@@ -41,37 +41,7 @@
     <br>
     <br>
     <h1 class="display-1 text-light"><strong>Waipahu High School</strong></h1>
-    <h2>Sign in with Google</h2>
-
-  <div id="g_id_onload"
-       data-client_id="YOUR_GOOGLE_CLIENT_ID"
-       data-callback="handleCredentialResponse">
-  </div>
-
-  <div class="g_id_signin"
-       data-type="standard"
-       data-size="large">
-  </div>
-
-  <div id="profile">
-    <p><strong>ID:</strong> <span id="user-id"></span></p>
-    <p><strong>Name:</strong> <span id="user-name"></span></p>
-    <p><strong>Email:</strong> <span id="user-email"></span></p>
-    <img id="user-pic" width="100">
-  </div>
-
-  <script>
-    function handleCredentialResponse(response) {
-      const data = jwt_decode(response.credential);
-      document.getElementById("user-id").textContent = data.sub;
-      document.getElementById("user-name").textContent = data.name;
-      document.getElementById("user-email").textContent = data.email;
-      document.getElementById("user-pic").src = data.picture;
-      document.getElementById("profile").style.display = "block";
-    }
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.js"></script>
+    
   </header>
   <main>
     <div id="index-top" class="cf">
