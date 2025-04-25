@@ -63,53 +63,51 @@
       </div>
     </div>
     <script>
-      const notificationSet = new Set();
+      const accordion = document.getElementById("accordion");
+      const shownNotifications = new Set();
     
-      async function fetchGoogleDocUpdates() {
+      async function loadNotifications() {
         try {
           const res = await fetch("https://docs.google.com/document/d/e/2PACX-1vSBGOtfDF_UpFHYH1iBlzBGdUODeeMWT97IPv4aFsWw_W4eyjollFtvN0yRe7FXj62h-agAppMkKPA0/pub?embedded=true");
           const text = await res.text();
           const parser = new DOMParser();
-          const doc = parser.parseFromString(text, 'text/html');
-          const content = doc.querySelector('body').innerText;
+          const doc = parser.parseFromString(text, "text/html");
+          const content = doc.body.innerText;
     
-          const lines = content.split('\n').map(l => l.trim()).filter(Boolean);
+          const lines = content.split("\n").map(line => line.trim()).filter(Boolean);
     
-          lines.forEach((line, i) => {
-            if (!notificationSet.has(line)) {
-              notificationSet.add(line);
+          lines.forEach((line, index) => {
+            if (!shownNotifications.has(line)) {
+              shownNotifications.add(line);
     
-              const notificationId = 'collapseDynamic' + i;
-              const panelHTML = `
-                <div class="panel panel-default border">
-                  <div class="panel-heading" role="tab" id="headingDynamic${i}">
-                    <h4 class="panel-title">
-                      <a class="text-dark" role="button" data-toggle="collapse" data-parent="#accordion" href="#${notificationId}" aria-expanded="true" aria-controls="${notificationId}">
-                        ${line.split(':')[0] || 'New Update'}
-                      </a>
-                    </h4>
+              const title = line.split(":")[0] || "New Update";
+              const message = line.split(":").slice(1).join(":") || "No details provided.";
+    
+              const newDiv = document.createElement("div");
+              newDiv.innerHTML = `
+                <div class="card mb-2">
+                  <div class="card-header">
+                    <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#notif${index}">
+                      ${title}
+                    </button>
                   </div>
-                  <div id="${notificationId}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDynamic${i}">
-                    <div class="panel-body">
-                      <p>${line.split(':').slice(1).join(':') || 'No details provided.'}</p>
+                  <div id="notif${index}" class="collapse">
+                    <div class="card-body">
+                      ${message}
                     </div>
                   </div>
                 </div>`;
-    
-              const accordion = document.getElementById('accordion');
-              accordion.insertAdjacentHTML('beforeend', panelHTML);
+              accordion.appendChild(newDiv);
             }
           });
-    
-        } catch (error) {
-          console.error("Failed to fetch Google Doc:", error);
+        } catch (err) {
+          console.error("Could not load notifications:", err);
         }
       }
     
-      // Run on page load
-      fetchGoogleDocUpdates();
-      // Refresh every 60 seconds
-      setInterval(fetchGoogleDocUpdates, 60000);
+      // Initial load + auto refresh every 60 sec
+      loadNotifications();
+      setInterval(loadNotifications, 60000);
     </script>
     
     <div class="container">
