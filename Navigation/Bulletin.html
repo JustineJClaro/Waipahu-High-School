@@ -58,30 +58,34 @@
           const paragraphs = doc.querySelectorAll('p');
     
           const accordion = document.getElementById('notifications');
-          accordion.innerHTML = ''; // 💡 Prevent overload
+          accordion.innerHTML = ''; // Clear existing content
     
+          const maxNotifications = 5; // <--- Limit set here
           let index = 0;
     
-          paragraphs.forEach(p => {
+          for (let p of paragraphs) {
             const text = p.innerText.trim();
-            if (text.length < 5) return; // 💡 Skip short/blank lines
+            if (text.length < 5) continue;
     
             const item = document.createElement('div');
             item.className = 'accordion-item';
             item.innerHTML = `
-              <h2 class="accordion-header" id="heading${index}">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
-                  Notification ${index + 1}
-                </button>
-              </h2>
-              <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
-                <div class="accordion-body">${text.replace(/\n/g, '<br>')}</div>
-              </div>
-            `;
+  <h2 class="accordion-header" id="heading${index}">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+      data-bs-target="#collapse${index}" aria-expanded="false" aria-controls="collapse${index}">
+      Notification ${index + 1}
+    </button>
+  </h2>
+  <div id="collapse${index}" class="accordion-collapse collapse" aria-labelledby="heading${index}">
+    <div class="accordion-body">${text}</div>
+  </div>
+`;
+
             accordion.appendChild(item);
             index++;
-          });
+    
+            if (index >= maxNotifications) break; // <-- Stop after 5
+          }
     
         } catch (error) {
           console.error('Failed to load Google Doc content:', error);
@@ -90,6 +94,7 @@
     
       loadGoogleDoc();
     </script>
+    
     <br>
     <br>
 
