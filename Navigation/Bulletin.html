@@ -28,31 +28,6 @@
 
   <!-- Custom JS -->
   <script src="../index.js"></script>
-  <style>
-    .collapsible {
-      background-color: #eee;
-      color: #444;
-      cursor: pointer;
-      padding: 10px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .active, .collapsible:hover {
-      background-color: #ccc;
-    }
-
-    .content {
-      padding: 0 18px;
-      display: none;
-      overflow: hidden;
-      background-color: #f9f9f9;
-    }
-  </style>
 </head>
 
 <body>
@@ -87,68 +62,56 @@
         </div>
       </div>
     </div>
-    <h2>Live Notifications</h2>
-  <div id="notificationContainer">Loading...</div>
-
     <script>
-      const container = document.getElementById('notificationContainer');
-      let displayedNotifications = new Set();
-  
-      function addNotification(title, message) {
-        const button = document.createElement('button');
-        button.className = 'collapsible';
-        button.textContent = title;
-  
-        const content = document.createElement('div');
-        content.className = 'content';
-        content.innerHTML = `<p>${message}</p>`;
-  
-        button.addEventListener('click', function () {
-          this.classList.toggle('active');
-          content.style.display = content.style.display === 'block' ? 'none' : 'block';
-        });
-  
-        container.prepend(content);
-        container.prepend(button);
-      }
-  
-      async function fetchNotifications() {
+      const notificationSet = new Set();
+    
+      async function fetchGoogleDocUpdates() {
         try {
-          const res = await fetch('https://docs.google.com/document/d/e/2PACX-1vTq2Fle748vgloEadw30HlA5Q3ZdVisTcZzxsfaghnof5pDg7Q79-j0-3410brICZi-7BMsvq20xXRT/pub?embedded=true');
+          const res = await fetch("https://docs.google.com/document/d/e/2PACX-1vTq2Fle748vgloEadw30HlA5Q3ZdVisTcZzxsfaghnof5pDg7Q79-j0-3410brICZi-7BMsvq20xXRT/pub?embedded=true");
           const text = await res.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(text, 'text/html');
-          const bodyText = doc.querySelector('body').innerText;
-  
-          const lines = bodyText.split('\n').map(line => line.trim()).filter(Boolean);
-  
-          lines.forEach((line, index) => {
-            if (!displayedNotifications.has(line)) {
-              displayedNotifications.add(line);
-  
-              // Parse title and message
-              let [title, ...rest] = line.split(':');
-              let message = rest.join(':').trim();
-              if (!message) {
-                message = '(No details provided)';
-              }
-  
-              addNotification(title.trim(), message);
+          const content = doc.querySelector('body').innerText;
+    
+          const lines = content.split('\n').map(l => l.trim()).filter(Boolean);
+    
+          lines.forEach((line, i) => {
+            if (!notificationSet.has(line)) {
+              notificationSet.add(line);
+    
+              const notificationId = 'collapseDynamic' + i;
+              const panelHTML = `
+                <div class="panel panel-default border">
+                  <div class="panel-heading" role="tab" id="headingDynamic${i}">
+                    <h4 class="panel-title">
+                      <a class="text-dark" role="button" data-toggle="collapse" data-parent="#accordion" href="#${notificationId}" aria-expanded="true" aria-controls="${notificationId}">
+                        ${line.split(':')[0] || 'New Update'}
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="${notificationId}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDynamic${i}">
+                    <div class="panel-body">
+                      <p>${line.split(':').slice(1).join(':') || 'No details provided.'}</p>
+                    </div>
+                  </div>
+                </div>`;
+    
+              const accordion = document.getElementById('accordion');
+              accordion.insertAdjacentHTML('beforeend', panelHTML);
             }
           });
-  
-        } catch (err) {
-          container.innerHTML = '<p style="color:red;">Failed to load notifications.</p>';
-          console.error(err);
+    
+        } catch (error) {
+          console.error("Failed to fetch Google Doc:", error);
         }
       }
-  
-      // Initial fetch
-      fetchNotifications();
-      // Re-fetch every 60 seconds (can change to any interval)
-      setInterval(fetchNotifications, 60000);
+    
+      // Run on page load
+      fetchGoogleDocUpdates();
+      // Refresh every 60 seconds
+      setInterval(fetchGoogleDocUpdates, 60000);
     </script>
-  
+    
     <div class="container">
       <img
         src="https://www.waipahuhigh.org/ourpages/auto/2025/4/1/45166328/class%20of%202026%20junior%20year%20-%20family%20night%20instagram%20post%20color_thumb.jpg?1743528916000"
