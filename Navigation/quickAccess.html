@@ -19,14 +19,29 @@
 
   <!-- Custom JS -->
   <script src="../index.js"></script>
+  <style>
+  	.imageBanner {
+    	z-index: 1;
+         background-image: url('https://www.waipahuhigh.org/pics/video.jpg');
+        background-size: cover;
+        position: relative;
+    }
+    .overlappingImage {
+    	width: 40%;
+        height: 40%;
+    }
+  </style>
 </head>
 
 <body>
-  <header class="p-5 d-flex text-center mx-auto row container-fluid align-items-center justify-content-center imageBanner">
-    <img src="https://www.waipahuhigh.org/pics/video.jpg" class="UnderImage">
-    <img src="https://www.waipahuhigh.org/shared/header_logo.png" class="overlappingImage">
-    <h1>Waipahu High School</h1>
+  <header class="p-5 d-flex text-center mx-auto row container-fluid align-items-center justify-content-center bg-dark">
+  <h1 class="text-white"><strong>Waipahu High School</strong></h1>
   </header>
+	<div class="imageBanner p-5 d-flex text-center mx-auto row container-fluid align-items-center justify-content-center">
+	<img src="https://www.waipahuhigh.org/shared/header_logo.png" class="overlappingImage" >
+
+  </div>
+  <br>
   <main class="container">
     <div class="container bg-light">
       <div class="col-md-12 text-center">
