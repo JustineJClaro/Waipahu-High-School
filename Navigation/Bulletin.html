@@ -62,8 +62,9 @@
         </div>
       </div>
     </div>
+    <div class="accordion-notification">
     <script>
-      const accordion = document.getElementById("accordion");
+      const accordion = document.getElementById("accordion-notification");
       const shownNotifications = new Set();
     
       async function loadNotifications() {
@@ -109,6 +110,7 @@
       loadNotifications();
       setInterval(loadNotifications, 60000);
     </script>
+    </div>
     
     <div class="container">
       <img
